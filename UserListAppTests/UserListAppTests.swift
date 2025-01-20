@@ -10,27 +10,58 @@ import XCTest
 
 final class UserListAppTests: XCTestCase {
 
+    var networkManager: NetworkManagerProtocol! // Mock veya gerçek NetworkManager burada tutuluyor.
+    var viewModel: UserListViewModel! // ViewModel'i burada test edeceğim.
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        // Test için MockNetworkManager kullanıyorum çünkü gerçek API çağrılarına bağımlı olmak istemiyorum.
+        networkManager = MockNetworkManager()
+        viewModel = UserListViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // Test bittikten sonra temizliğimi yapıyorum.
+        networkManager = nil
+        viewModel = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testFetchUsersSuccess() {
+        // Burada kullanıcıları başarıyla çekip çekmediğimizi kontrol ediyorum.
+        // Gerçek bir ağ bağlantısına bağımlı kalmak istemediğim için mock verilerle test ediyorum.
+        let expectation = XCTestExpectation(description: "Users fetched successfully")
+        
+        networkManager.fetchUsers { result in
+            switch result {
+            case .success(let users):
+                // Kullanıcılar boş olmamalı.
+                XCTAssertNotNil(users, "Kullanıcı listesi boş olmamalı")
+                // MockNetworkManager 2 kullanıcı döndürdüğü için bunu kontrol ediyorum.
+                XCTAssertEqual(users.count, 2, "Beklenen kullanıcı sayısı yanlış")
+                expectation.fulfill()
+            case .failure(let error):
+                // Eğer buraya düşüyorsak bir problem var demektir.
+                XCTFail("Hata oluştu: \(error.localizedDescription)")
+            }
         }
+        
+        // 5 saniye içinde sonuç bekliyorum, test burada takılırsa problem var.
+        wait(for: [expectation], timeout: 5.0)
     }
 
+    func testViewModelUserCount() {
+        // Burada ViewModel'deki kullanıcı sayısının doğru şekilde tutulup tutulmadığını test ediyorum.
+        // Yine mock verilerle çalışıyorum çünkü bu birim test.
+        let mockUsers = [
+            User(id: 1, name: "John Doe", email: "john.doe@example.com", phone: "1234567890", website: "johndoe.com"),
+            User(id: 2, name: "Jane Doe", email: "jane.doe@example.com", phone: "9876543210", website: "janedoe.com")
+        ]
+        
+        // Testler için ViewModel'e manuel olarak kullanıcıları ekliyorum.
+        viewModel.injectUsers(mockUsers)
+        
+        // Kullanıcı sayısını kontrol ediyorum, 2 kullanıcı eklemiştim.
+        XCTAssertEqual(viewModel.users.count, 2, "Beklenen kullanıcı sayısı yanlış")
+    }
 }

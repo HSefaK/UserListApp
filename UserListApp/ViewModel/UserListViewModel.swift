@@ -22,4 +22,8 @@ class UserListViewModel {
             }
         }
     }
+  // Testler için kullanıcı verilerini manuel olarak eklemek için
+  func injectUsers(_ mockUsers: [User]) {
+      self.users = mockUsers
+  }
 }

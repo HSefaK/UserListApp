@@ -12,6 +12,7 @@ class UserDetailViewController: UIViewController, UITableViewDataSource {
     private let viewModel: UserDetailViewModel
     private let tableView = UITableView()
 
+    // Kullanıcının detaylarını gösterebilmek için viewModel'i burada initialize ediyorum.
     init(user: User) {
         self.viewModel = UserDetailViewModel(user: user)
         super.init(nibName: nil, bundle: nil)
@@ -23,29 +24,30 @@ class UserDetailViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupUI() // Kullanıcı arayüzü ayarları.
     }
 
     private func setupUI() {
-        view.backgroundColor = .white
-        title = "User Details"
+        view.backgroundColor = .white // Arka planı beyaz yapıyorum çünkü temiz bir görünüm sağlıyor.
+        title = "User Details" // Ekranın başlığı.
 
-        // TableView Ayarları
+        // TableView'i ekrana ekliyorum ve boyutlarını ekranla aynı olacak şekilde ayarlıyorum.
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCell")
-        tableView.allowsSelection = false
+        tableView.dataSource = self // TableView'in verilerini kendim yönetiyorum.
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCell") // Hücreleri kaydediyorum.
+        tableView.allowsSelection = false // Bu ekranda hücreler seçilebilir değil çünkü detay ekranı zaten statik bir liste.
     }
 
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4 // Gösterilecek 4 bilgi: İsim, e-posta, telefon, web sitesi
+        return 4 // Her kullanıcı için 4 satır göstereceğim: isim, e-posta, telefon ve web sitesi.
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
 
+        // Burada hangi sırada hangi bilgiyi göstereceğimi kontrol ediyorum.
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "Name: \(viewModel.name)"
@@ -59,7 +61,7 @@ class UserDetailViewController: UIViewController, UITableViewDataSource {
             cell.textLabel?.text = ""
         }
 
-        cell.textLabel?.numberOfLines = 0 // Çok satırlı metin için
+        cell.textLabel?.numberOfLines = 0 // Bilgilerin birden fazla satırda düzgün görünmesi için.
         return cell
     }
 }
