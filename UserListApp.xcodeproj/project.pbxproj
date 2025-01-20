@@ -17,6 +17,12 @@
 		C3D689932D3EB3D4002D581C /* UserListAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689922D3EB3D4002D581C /* UserListAppTests.swift */; };
 		C3D6899D2D3EB3D4002D581C /* UserListAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D6899C2D3EB3D4002D581C /* UserListAppUITests.swift */; };
 		C3D6899F2D3EB3D4002D581C /* UserListAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D6899E2D3EB3D4002D581C /* UserListAppUITestsLaunchTests.swift */; };
+		C3D689AE2D3EBCCA002D581C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689AD2D3EBCCA002D581C /* User.swift */; };
+		C3D689B12D3EBCEC002D581C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689B02D3EBCEC002D581C /* NetworkManager.swift */; };
+		C3D689B42D3EBD1D002D581C /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689B32D3EBD1D002D581C /* UserListViewModel.swift */; };
+		C3D689B62D3EBD34002D581C /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689B52D3EBD34002D581C /* UserDetailViewModel.swift */; };
+		C3D689B92D3EBD59002D581C /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689B82D3EBD59002D581C /* UserListViewController.swift */; };
+		C3D689BB2D3EBD7A002D581C /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D689BA2D3EBD7A002D581C /* UserDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,12 @@
 		C3D689982D3EB3D4002D581C /* UserListAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserListAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D6899C2D3EB3D4002D581C /* UserListAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListAppUITests.swift; sourceTree = "<group>"; };
 		C3D6899E2D3EB3D4002D581C /* UserListAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C3D689AD2D3EBCCA002D581C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C3D689B02D3EBCEC002D581C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C3D689B32D3EBD1D002D581C /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		C3D689B52D3EBD34002D581C /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
+		C3D689B82D3EBD59002D581C /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		C3D689BA2D3EBD7A002D581C /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +113,11 @@
 		C3D689772D3EB3D2002D581C /* UserListApp */ = {
 			isa = PBXGroup;
 			children = (
-				C3D689782D3EB3D2002D581C /* AppDelegate.swift */,
-				C3D6897A2D3EB3D2002D581C /* SceneDelegate.swift */,
+				C3D689AC2D3EBCBE002D581C /* Model */,
+				C3D689B22D3EBD0A002D581C /* ViewModel */,
+				C3D689B72D3EBD41002D581C /* View */,
+				C3D689AB2D3EBCAE002D581C /* App */,
+				C3D689AF2D3EBCDC002D581C /* Utils */,
 				C3D6897C2D3EB3D2002D581C /* ViewController.swift */,
 				C3D6897E2D3EB3D2002D581C /* Main.storyboard */,
 				C3D689842D3EB3D4002D581C /* Assets.xcassets */,
@@ -128,6 +143,49 @@
 				C3D6899E2D3EB3D4002D581C /* UserListAppUITestsLaunchTests.swift */,
 			);
 			path = UserListAppUITests;
+			sourceTree = "<group>";
+		};
+		C3D689AB2D3EBCAE002D581C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C3D689782D3EB3D2002D581C /* AppDelegate.swift */,
+				C3D6897A2D3EB3D2002D581C /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C3D689AC2D3EBCBE002D581C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3D689AD2D3EBCCA002D581C /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3D689AF2D3EBCDC002D581C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C3D689B02D3EBCEC002D581C /* NetworkManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C3D689B22D3EBD0A002D581C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3D689B32D3EBD1D002D581C /* UserListViewModel.swift */,
+				C3D689B52D3EBD34002D581C /* UserDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C3D689B72D3EBD41002D581C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3D689B82D3EBD59002D581C /* UserListViewController.swift */,
+				C3D689BA2D3EBD7A002D581C /* UserDetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +319,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3D689B12D3EBCEC002D581C /* NetworkManager.swift in Sources */,
 				C3D689832D3EB3D2002D581C /* UserListApp.xcdatamodeld in Sources */,
+				C3D689B62D3EBD34002D581C /* UserDetailViewModel.swift in Sources */,
+				C3D689B42D3EBD1D002D581C /* UserListViewModel.swift in Sources */,
 				C3D6897D2D3EB3D2002D581C /* ViewController.swift in Sources */,
+				C3D689B92D3EBD59002D581C /* UserListViewController.swift in Sources */,
+				C3D689BB2D3EBD7A002D581C /* UserDetailViewController.swift in Sources */,
 				C3D689792D3EB3D2002D581C /* AppDelegate.swift in Sources */,
+				C3D689AE2D3EBCCA002D581C /* User.swift in Sources */,
 				C3D6897B2D3EB3D2002D581C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
